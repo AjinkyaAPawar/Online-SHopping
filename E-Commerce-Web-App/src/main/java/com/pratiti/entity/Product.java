@@ -19,7 +19,7 @@ public class Product  {
 
 	private String description;
 
-	private int name;
+	private String name;
 
 	private String picture;
 
@@ -80,11 +80,11 @@ public class Product  {
 		this.description = description;
 	}
 
-	public int getName() {
+	public String getName() {
 		return this.name;
 	}
 
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
