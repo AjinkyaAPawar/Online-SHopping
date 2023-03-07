@@ -15,7 +15,7 @@ CREATE TABLE `Retailers` (
 
 CREATE TABLE `Products` (
 	`id` int NOT NULL AUTO_INCREMENT,
-	`name` int,
+	`name` varchar(25),
 	`brand` varchar(25),
 	`description` varchar(500),
 	`price` int,
