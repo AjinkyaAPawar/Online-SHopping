@@ -1,6 +1,9 @@
 package com.pratiti.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 
@@ -39,6 +42,7 @@ public class OrderDetail  {
 
 	//bi-directional many-to-one association to Product
 	@ManyToOne
+	@JsonIgnore
 	private Product product;
 
 	public OrderDetail() {

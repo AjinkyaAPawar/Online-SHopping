@@ -1,6 +1,9 @@
 package com.pratiti.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -21,6 +24,7 @@ public class Admin  {
 
 	//bi-directional many-to-one association to Retailer
 	@OneToMany(mappedBy="admin")
+	@JsonIgnore
 	private List<Retailer> retailers;
 
 	public Admin() {
