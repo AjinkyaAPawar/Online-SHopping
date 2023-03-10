@@ -45,6 +45,10 @@ public class Product  {
 	@ManyToOne
 	@JsonIgnore
 	private Category category;
+	
+	//bi-directional many-to-one association to Order
+		@OneToMany(mappedBy="product")
+		private List<Order> orders;
 
 	//bi-directional many-to-one association to Retailer
 	@ManyToOne
@@ -140,6 +144,14 @@ public class Product  {
 
 	public void setWeight(float weight) {
 		this.weight = weight;
+	}
+	
+	public List<Order> getOrders() {
+		return this.orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
 	}
 
 	public List<OrderDetail> getOrderDetails() {

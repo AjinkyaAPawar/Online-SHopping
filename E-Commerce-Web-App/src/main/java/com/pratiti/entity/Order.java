@@ -1,6 +1,9 @@
 package com.pratiti.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -42,14 +45,22 @@ public class Order  {
 
 	//bi-directional many-to-one association to OrderDetail
 	@OneToMany(mappedBy="order")
+	@JsonIgnore
 	private List<OrderDetail> orderDetails;
 
 	//bi-directional many-to-one association to Payment
 	@ManyToOne
+	@JsonIgnore
 	private Payment payment;
+	
+	@ManyToOne
+	@JoinColumn(name="`product _id`")
+	@JsonIgnore
+	private Product product;
 
 	//bi-directional many-to-one association to Shipper
 	@ManyToOne
+	@JsonIgnore
 	private Shipper shipper;
 
 	public Order() {
@@ -109,6 +120,14 @@ public class Order  {
 
 	public void setPaid(byte paid) {
 		this.paid = paid;
+	}
+	
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public Date getPaymentDate() {

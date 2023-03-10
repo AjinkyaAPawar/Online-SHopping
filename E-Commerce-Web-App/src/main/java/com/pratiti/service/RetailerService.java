@@ -5,11 +5,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
 import com.pratiti.entity.Product;
 import com.pratiti.entity.Retailer;
 import com.pratiti.exceptions.RetailerServiceException;
+import com.pratiti.model.RetailerData;
 import com.pratiti.repository.ProductRepository;
 import com.pratiti.repository.RetailerRepository;
 
@@ -81,9 +80,15 @@ public class RetailerService {
 		
 	}
 	
-	public List<Product> showAllProducts(){
-		List<Product> product = productRepository.findAll();
-		return product;
+	public List<Product> showAllProducts(RetailerData retailerData){
+		if(retailerRepository.existsByEmail(retailerData.getEmail())) {
+			List<Product> product = productRepository.findByRetailerId(Integer.parseInt(retailerData.getId()));
+			return product;
+		}
+		else {
+			throw new RetailerServiceException("Retailer Doesn't EXISTS!!");
+		}
+		
 	}
 }
 	

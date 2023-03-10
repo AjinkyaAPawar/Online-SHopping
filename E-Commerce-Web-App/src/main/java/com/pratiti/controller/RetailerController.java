@@ -46,16 +46,18 @@ public class RetailerController {
 	}
 	
 	@PostMapping("/retailer/login")
-	public String login(@RequestBody RetailerData retailerData) {
+	public Retailer login(@RequestBody RetailerData retailerData) {
 		
 		try {
 			Retailer retailer = retailerService.login(retailerData.getEmail(), retailerData.getPassword());
-			return "Retailer logged in successfully!!";
+			return retailer;
 		}
 		catch(Exception e) {
-			return(e.getMessage());
+			return null;
 		}
 	}
+	
+	
 	
 	@PostMapping("/add-product")
 	public String addProduct(@RequestBody Product product) {
@@ -69,8 +71,8 @@ public class RetailerController {
 	}
 	
 	@PostMapping("/show-all-products")
-	public List<Product> showAllProducts(){
-		List<Product> productli = retailerService.showAllProducts();
+	public List<Product> showAllProducts(@RequestBody RetailerData retailerData){
+		List<Product> productli = retailerService.showAllProducts(retailerData);
 		return productli;
 	}
 	
