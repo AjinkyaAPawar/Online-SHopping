@@ -72,7 +72,7 @@ public class RetailerController {
 	
 	@PostMapping("/show-all-products")
 	public List<Product> showAllProducts(@RequestBody RetailerData retailerData){
-		List<Product> productli = retailerService.showAllProducts(retailerData);
+		List<Product> productli = retailerService.showAllProducts(retailerData.getEmail(),retailerData.getPassword());
 		return productli;
 	}
 	

@@ -48,12 +48,18 @@ public class UserController {
 	
 	
 	//Showing Product as per Category
-	@PostMapping("/show-products")
-	public List<Product> showProducts(@RequestBody Category category){
-		List<Product> product = userService.showProducts(category);
+	@GetMapping("/show-products")
+	public List<Product> showProducts(@RequestParam("id") int id){
+//		int i = Integer.parseInt(id);
+		List<Product> product = userService.showProducts(id);
 		return product;
 	}
 	
+   @GetMapping("/show-product-by-id")
+   public Product showProductById(@RequestParam("id") int id) {
+	   Product product = userService.showProductById(id);
+	   return product;
+   }
 	
 	// Getting Product Discription
 	@GetMapping("/get-product-description")

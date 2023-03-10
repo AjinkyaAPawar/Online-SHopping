@@ -70,8 +70,8 @@ public class UserService {
 	
 	
 	// Category
-	public List<Product> showProducts(Category category){
-		 List<Product> productList = productRepository.findByCategory(category.getId());
+	public List<Product> showProducts(int id){
+		 List<Product> productList = productRepository.findByCategory(id);
 		 return productList;
 	}
 	
@@ -97,6 +97,14 @@ public class UserService {
 		}
 		
 		return null;
+	}
+
+
+	public Product showProductById(int id) {
+
+		Optional<Product> product = productRepository.findById(id);
+		
+		return product.get();
 	}
 	
 	

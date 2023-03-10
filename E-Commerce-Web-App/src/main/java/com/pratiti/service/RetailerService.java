@@ -80,9 +80,9 @@ public class RetailerService {
 		
 	}
 	
-	public List<Product> showAllProducts(RetailerData retailerData){
-		if(retailerRepository.existsByEmail(retailerData.getEmail())) {
-			List<Product> product = productRepository.findByRetailerId(Integer.parseInt(retailerData.getId()));
+	public List<Product> showAllProducts(String email, String password){
+		if(retailerRepository.existsByEmail(email)) {
+			List<Product> product = productRepository.findAll(email,password);
 			return product;
 		}
 		else {

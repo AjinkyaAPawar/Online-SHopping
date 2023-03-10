@@ -16,10 +16,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	@Query("select p from Product p where p.name =?1 and p.retailer.id=?2")
 	public Optional<Product> findByNameAndRetailer(String name, int retailerId);
 	
-	@Query("select p from Product p where p.category = ?1")
+	@Query("select p from Product p where p.category.id = ?1")
 	public List<Product> findByCategory(int category);
 	
 	@Query("select p from Product p where p.retailer=?1")
 	public List<Product> findByRetailerId(int id);
+	
+	@Query("select p from Product p join p.retailer r where r.email = ?1 and r.password = ?2 ")
+	public List<Product> findAll(String email, String password);
 
 }
