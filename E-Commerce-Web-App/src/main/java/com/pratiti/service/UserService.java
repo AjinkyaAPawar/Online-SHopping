@@ -7,7 +7,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pratiti.entity.Category;
 import com.pratiti.entity.Order;
 import com.pratiti.entity.Product;
 import com.pratiti.entity.User;
@@ -107,7 +106,17 @@ public class UserService {
 		return product.get();
 	}
 	
+
 	
+	
+	public void addOrder(Order order) {
+			orderRepository.save(order);		// saving ORDER without checking any condition 
+	}
+
+	public List<Order> allOrders(int id) {
+		List<Order> orders = orderRepository.findAllByCustomerId(id);
+		return orders;
+	}
 	
 
 }

@@ -10,12 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pratiti.entity.Category;
 import com.pratiti.entity.Order;
 import com.pratiti.entity.Product;
-import com.pratiti.entity.Retailer;
-import com.pratiti.entity.User;
-import com.pratiti.model.RetailerData;
+import com.pratiti.exceptions.RetailerServiceException;
 import com.pratiti.service.UserService;
 
 @RestController
@@ -68,19 +65,44 @@ public class UserController {
 	}
 
 	
-	@PostMapping("/add/order")
-	public void addOrder(@RequestBody Order order) {
-		userService.addUserOrder(order);
+//	@PostMapping("/add/order")
+//	public void addOrder(@RequestBody Order order) {
+//		userService.addUserOrder(order);
+//	}
+//	
+//	@PostMapping("/user/register")
+//	public User login(@RequestBody User user) {
+//		
+//		try {
+//			User user1 = userService.register(user);
+//			return user1;
+//		}
+//		catch(Exception e) {
+//			return null;
+//		}
+//	}
+	
+
+	
+	
+	
+	
+	
+	@PostMapping("/addOrder")
+	public String addOrder(@RequestBody Order order) {
+
+		try {
+			userService.addOrder(order);
+			return "Order Added successfully";
+		} catch (RetailerServiceException e) {
+			return e.getMessage();
+		}
 	}
 	
-	@PostMapping("/user/register")
-	public User login(@RequestBody User user) {
-		
-		try {
-			User user1 = userService.register(user);
-			return user1;
-		}
-		catch(Exception e) {
-			return null;
-		}
-	}}
+	@GetMapping("/allOrders")
+	public List<Order> allOrders(@RequestParam("id")  int id) {
+			List<Order> orders = userService.allOrders(id);
+			return orders;
+	}
+	
+}

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.pratiti.entity.Product;
 import com.pratiti.entity.Retailer;
 import com.pratiti.exceptions.RetailerServiceException;
-import com.pratiti.model.RetailerData;
 import com.pratiti.repository.ProductRepository;
 import com.pratiti.repository.RetailerRepository;
 
